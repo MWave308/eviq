@@ -1,0 +1,63 @@
+.speed-panel {
+  align-items: center;
+  justify-content: center;
+}
+
+.speed-gauge {
+  width: min(100%, 420px);
+  flex: 1;
+  min-height: 0;
+}
+
+.gauge-track {
+  fill: none;
+  stroke: var(--track-subtle);
+  stroke-width: 16;
+  stroke-linecap: round;
+}
+
+.gauge-optimal {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 16;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 10px var(--green-glow));
+}
+
+.gauge-needle {
+  stroke: var(--cyan);
+  stroke-width: 4;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px var(--cyan-glow));
+  transition: all 0.8s var(--ease-out);
+}
+
+.gauge-pivot {
+  fill: var(--cyan);
+  filter: drop-shadow(0 0 8px var(--cyan-glow));
+}
+
+.speed-readout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  text-align: center;
+  margin-top: -18px;
+}
+
+.speed-divider {
+  width: 1px;
+  height: 42px;
+  background: var(--hairline);
+}
+
+.factor-chip {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  font-size: 12.5px;
+  color: var(--text-1);
+  line-height: 1.4;
+}

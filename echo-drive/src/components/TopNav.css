@@ -1,0 +1,133 @@
+.topnav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  gap: 12px;
+}
+
+.topnav-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  color: var(--void);
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  /* Gambarino is single-weight — size carries the wordmark's presence
+     instead of a synthetic bold. */
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.topnav-center {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 4px;
+  flex: 1;
+  justify-content: center;
+  max-width: 620px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.topnav-center::-webkit-scrollbar { display: none; }
+
+.nav-item {
+  border: none;
+  background: transparent;
+  color: var(--text-1);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+
+.nav-item:hover {
+  color: var(--text-0);
+  background: var(--surface-3);
+}
+
+.nav-item.active {
+  color: var(--void);
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  font-weight: 600;
+}
+
+.topnav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  justify-content: flex-end;
+}
+
+.start-journey-btn {
+  padding: 7px 15px;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--text-1);
+  flex-shrink: 0;
+  transition: all 0.2s var(--ease-out);
+}
+.icon-btn:hover {
+  color: var(--cyan);
+  border-color: var(--panel-border-hi);
+}
+
+.theme-toggle svg {
+  transition: transform 0.3s var(--ease-out);
+}
+.theme-toggle:hover svg {
+  transform: rotate(20deg);
+}
+
+@media (max-width: 1100px) {
+  .topnav-center { display: none; }
+}
+
+@media (max-width: 560px) {
+  .brand-name { font-size: 13px; }
+}
+
+/* Below ~420px, "Start Journey" (icon + label + theme toggle) no longer
+   fits next to the brand mark without crowding — collapse the button to
+   its icon only. Same click target, same action, no overlap. */
+@media (max-width: 420px) {
+  .start-journey-btn { padding: 8px; width: 32px; height: 32px; border-radius: 50%; }
+  .btn-label { display: none; }
+}

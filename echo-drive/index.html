@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#060910" />
+    <meta name="description" content="EVIQ — a zero-scroll AI command center for electric vehicle range, energy, route and charging intelligence." />
+    <title>EVIQ · EV Intelligence Command Center</title>
+    <!-- Type system: Plus Jakarta Sans (display/headings), Outfit, Inter and
+         Sora as the fallback stack for body/UI text — all loaded so any of
+         the four can be used across the app. Commit Mono stays for
+         instrument-cluster numerics/labels. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/commit-mono@latest/400.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/commit-mono@latest/500.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/commit-mono@latest/600.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/commit-mono@latest/700.css" rel="stylesheet" />
+     
+    <!-- Leaflet — the interactive map engine -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- MapLibre GL — renders OpenFreeMap's free vector tiles (Liberty style) -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Leaflet must load before the MapLibre-Leaflet bridge below -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- MapLibre GL JS — free, open-source, no API key required -->
+    <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+    <!-- Official bridge: lets Leaflet render a MapLibre vector style (OpenFreeMap Liberty) as a layer -->
+    <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
+  </body>
+</html>

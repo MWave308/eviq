@@ -1,0 +1,203 @@
+.route-map {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.route-map-svg {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border-radius: var(--radius-md);
+  background: radial-gradient(60% 60% at 50% 40%, rgba(51,230,255,0.05), transparent 70%);
+}
+
+.map-pin {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+.map-pin--start { fill: var(--cyan); }
+.map-pin--end { fill: var(--violet); }
+.map-pin--charge { fill: var(--green); animation: pulseDot 1.8s ease-in-out infinite; }
+
+.map-legend {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--text-2);
+}
+
+.map-legend-item--btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--cyan, #33e6ff);
+}
+.map-legend-item--btn:hover {
+  text-decoration: underline;
+}
+
+/* ---------- right column: Route Options above, Route Selection below ---------- */
+.route-side-stack {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+}
+
+.route-options-panel {
+  flex: 1 1 auto;
+  min-height: 260px;
+}
+
+.route-selection-panel {
+  flex: 0 0 auto;
+}
+
+.route-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.route-card {
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  transition: all 0.2s var(--ease-out);
+}
+.route-card:hover { border-color: var(--panel-border-hi); }
+
+.route-card--active {
+  border-color: var(--panel-border-hi);
+  background: rgba(51, 230, 255, 0.06);
+}
+
+.route-card[style*="--route-color"] {
+  border-left: 3px solid var(--route-color, transparent);
+}
+
+.route-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin-bottom: 6px;
+}
+.route-card-top .eyebrow {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.route-card-badge {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  color: var(--void);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.route-card-score {
+  margin-left: auto;
+  color: var(--green);
+  font-size: 13px;
+}
+
+.route-card-stats {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.confirm-route-btn {
+  width: 100%;
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.route-card-substats{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-2);margin-top:6px;flex-wrap:wrap}
+
+.route-card-charge-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:999px;background:rgba(70,224,160,.12);border:1px solid rgba(70,224,160,.3);color:var(--green);font-size:10.5px;font-weight:600;white-space:nowrap}
+
+/* ---------- Route Selection panel: start + destination + Find Routes ---------- */
+
+.journey-bar{position:relative;display:flex;flex-direction:column;gap:9px}
+
+.journey-row{position:relative;display:flex}
+
+.location-field{position:relative;display:flex;align-items:center;gap:8px;flex:1;min-width:0;padding:9px 10px;border-radius:10px;background:var(--surface-2);border:1px solid var(--hairline);color:var(--cyan);transition:border-color .15s var(--ease-out)}
+.location-field:focus-within{border-color:var(--panel-border-hi)}
+.location-field input{min-width:0;flex:1;border:0;outline:0;background:transparent;color:var(--text-0);font:500 12.5px var(--font-body)}
+.location-field input::placeholder{color:var(--text-2)}
+
+.location-use-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:4px;border:1px solid rgba(51,230,255,.22);border-radius:7px;background:rgba(51,230,255,.08);color:var(--cyan);padding:4px 8px;font:600 10.5px var(--font-body);white-space:nowrap}
+.location-use-btn:disabled{opacity:.6}
+.location-use-label{display:none}
+@media (min-width:1400px){.location-use-label{display:inline}}
+
+.location-clear-btn{flex-shrink:0;display:grid;place-items:center;width:20px;height:20px;border-radius:6px;border:1px solid var(--panel-border);background:var(--surface-2);color:var(--text-1)}
+
+.journey-swap-btn{align-self:center;flex-shrink:0;display:grid;place-items:center;width:26px;height:26px;margin:-3px auto;border-radius:8px;border:1px solid var(--panel-border);background:var(--surface-2);color:var(--text-1);font-size:14px;line-height:1;transition:border-color .15s var(--ease-out),color .15s var(--ease-out)}
+.journey-swap-btn:hover{border-color:var(--panel-border-hi);color:var(--cyan)}
+
+.journey-find-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:2px}
+.journey-find-btn:disabled{opacity:.5;cursor:not-allowed}
+
+.journey-alert{display:flex;align-items:center;gap:7px;padding:8px 11px;border-radius:10px;background:rgba(255,178,56,.1);border:1px solid rgba(255,178,56,.28);color:var(--text-1);font-size:11.5px;line-height:1.4}
+
+.spinner-ring{display:inline-block;flex-shrink:0;width:12px;height:12px;border-radius:50%;border:2px solid rgba(51,230,255,.25);border-top-color:var(--cyan);animation:spin .8s linear infinite}
+.spinner-ring--light{border-color:rgba(6,9,16,.3);border-top-color:var(--void, #060910)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* destination dropdown (suggestions list) — anchored to its field, never over the map */
+.destination-dropdown{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:20;max-height:280px;overflow-y:auto;border-radius:14px;padding:6px;display:flex;flex-direction:column;gap:2px;box-shadow:0 20px 44px var(--shadow-elevated)}
+.destination-empty{padding:12px 10px;font-size:12px;color:var(--text-2)}
+.destination-option{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;background:transparent;border:1px solid transparent;text-align:left;transition:background .15s var(--ease-out),border-color .15s var(--ease-out)}
+.destination-option:hover,.destination-option:focus-visible{background:rgba(51,230,255,.07);border-color:var(--panel-border-hi);outline:none}
+.destination-option-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.destination-option-name{font-size:12.5px;color:var(--text-0);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.destination-option-area{font-size:11px;color:var(--text-2)}
+.destination-option-dist{font-size:11px;color:var(--cyan);flex-shrink:0}
+
+.route-map-svg.leaflet-container{min-height:340px;height:100%;overflow:hidden}
+.leaflet-container{font-family:var(--font-body)}
+.leaflet-control-zoom a{background:var(--bg-2)!important;color:var(--text-0)!important;border-color:var(--panel-border)!important}
+.leaflet-control-zoom a:hover{background:var(--surface-4)!important;color:var(--cyan)!important}
+.leaflet-control-attribution{background:var(--panel-strong)!important;color:var(--text-2)!important}
+.leaflet-control-attribution a{color:var(--cyan)!important}
+
+@media (max-width: 980px) {
+  .route-side-stack { overflow-y: visible; }
+  .route-options-panel { min-height: 0; }
+}

@@ -1,0 +1,119 @@
+.journey-hub-panel {
+  align-items: center;
+  justify-content: center;
+}
+
+.journey-hub {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+.hub-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hub-line {
+  stroke: var(--track-subtle-hi);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 6;
+}
+
+.hub-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-strong);
+  border: 1px solid var(--panel-border-hi);
+  box-shadow: 0 0 40px var(--cyan-glow);
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+.hub-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: clamp(5px, 1.8vw, 8px) clamp(6px, 2.4vw, 10px);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  white-space: nowrap;
+  min-width: clamp(56px, 18vw, 78px);
+  z-index: 1;
+}
+
+.hub-node-value {
+  font-size: clamp(12px, 3vw, 15px);
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.hub-node-label {
+  font-size: clamp(8px, 2vw, 9.5px);
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.active-route-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 11px;
+  margin-bottom: 10px;
+  border-radius: var(--radius-md);
+  background: rgba(51, 230, 255, 0.07);
+  border: 1px solid rgba(51, 230, 255, 0.22);
+  color: var(--text-1);
+  font-size: 11.5px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.active-route-badge svg { flex-shrink: 0; }
+
+.active-route-badge--muted {
+  background: var(--surface-1);
+  border-color: var(--hairline);
+  color: var(--text-2);
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.feed {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+  overflow: auto;
+}
+
+.feed-msg {
+  display: flex;
+  gap: 8px;
+  animation: fadeUp 0.4s var(--ease-out);
+}

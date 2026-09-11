@@ -1,0 +1,466 @@
+/* ============================================================
+   EVIQ AI — design tokens
+   Palette is functional, not decorative: cyan = live vehicle
+   telemetry (battery/range/speed), violet = EVIQ AI reasoning,
+   green = efficiency gains, amber = "current vs optimal" deltas,
+   red = alerts only.
+
+   Type system: Gambarino (a single-weight, condensed display
+   serif) is reserved for the handful of moments that should read
+   as a considered headline — the wordmark, view headings, and the
+   big instrument figures — never for anything smaller than ~18px
+   or anything that needs a bold cut, since the face only ships in
+   regular. Cabinet Grotesk is Fontshare's own suggested pairing
+   for Gambarino and carries every UI surface that has to stay
+   fast to read: nav, buttons, body copy. Commit Mono is reserved
+   for numbers that should read like an instrument cluster —
+   telemetry, coordinates, timers — plus the small uppercase
+   eyebrow labels throughout.
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  /* surfaces */
+  --void: #05070c;
+  --bg-0: #070a12;
+  --bg-1: #0b0f1a;
+  --bg-2: #101627;
+  --panel: rgba(16, 22, 38, 0.58);
+  --panel-strong: rgba(14, 19, 33, 0.82);
+  --panel-border: rgba(148, 178, 214, 0.12);
+  --panel-border-hi: rgba(51, 230, 255, 0.38);
+  --hairline: rgba(148, 178, 214, 0.09);
+
+  /* text */
+  --text-0: #eef4fb;
+  --text-1: #aebdd1;
+  --text-2: #7686a0;
+  --text-3: #4b5871;
+
+  /* accents — semantic, not interchangeable */
+  --cyan: #33e6ff;
+  --cyan-dim: #1c8fa8;
+  --cyan-glow: rgba(51, 230, 255, 0.35);
+  --violet: #9b7cff;
+  --violet-dim: #6a52b8;
+  --violet-glow: rgba(155, 124, 255, 0.35);
+  --green: #46e0a0;
+  --green-glow: rgba(70, 224, 160, 0.32);
+  --amber: #ffb238;
+  --amber-glow: rgba(255, 178, 56, 0.32);
+  --red: #ff5b76;
+  --red-glow: rgba(255, 91, 118, 0.32);
+
+  /* type */
+  --font-display: 'Plus Jakarta Sans', 'Outfit', 'Sora', 'Inter', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Outfit', 'Inter', 'Sora', sans-serif;
+  --font-mono: 'Commit Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* rhythm */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* theme-aware surface tints — used instead of raw rgba(255,255,255,x) so
+     hover states, tracks, and subtle fills stay visible (not washed out)
+     against a light background instead of just inverting. */
+  --surface-1: rgba(255, 255, 255, 0.02);
+  --surface-2: rgba(255, 255, 255, 0.03);
+  --surface-3: rgba(255, 255, 255, 0.04);
+  --surface-4: rgba(255, 255, 255, 0.05);
+  --surface-5: rgba(255, 255, 255, 0.07);
+  --track-subtle: rgba(148, 178, 214, 0.14);
+  --track-subtle-hi: rgba(148, 178, 214, 0.18);
+  --shadow-elevated: rgba(0, 0, 0, 0.6);
+  --shadow-soft: rgba(0, 0, 0, 0.4);
+  --canvas-scrim: rgba(7, 10, 18, 0.35);
+  --chip-scrim: rgba(7, 10, 18, 0.55);
+
+  /* theme transition timing, shared so every surface animates in lockstep */
+  --theme-transition-duration: 0.45s;
+}
+
+/* ---------- light theme override ---------- */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --void: #f4f7fb;
+  --bg-0: #eef2f8;
+  --bg-1: #e6ecf5;
+  --bg-2: #dbe3f0;
+  --panel: rgba(255, 255, 255, 0.72);
+  --panel-strong: rgba(255, 255, 255, 0.88);
+  --panel-border: rgba(30, 45, 70, 0.1);
+  --panel-border-hi: rgba(11, 130, 155, 0.4);
+  --hairline: rgba(30, 45, 70, 0.08);
+
+  --text-0: #101826;
+  --text-1: #3c4a60;
+  --text-2: #64748b;
+  --text-3: #94a3b8;
+
+  --cyan: #0b96b3;
+  --cyan-dim: #0a7a91;
+  --cyan-glow: rgba(11, 150, 179, 0.22);
+  --violet: #6c4fd6;
+  --violet-dim: #5439ad;
+  --violet-glow: rgba(108, 79, 214, 0.22);
+
+  /* light-mode surface tints — a touch of ink instead of white-on-white,
+     so hover states, tracks, and chip fills stay legible. */
+  --surface-1: rgba(16, 30, 55, 0.035);
+  --surface-2: rgba(16, 30, 55, 0.045);
+  --surface-3: rgba(16, 30, 55, 0.06);
+  --surface-4: rgba(16, 30, 55, 0.075);
+  --surface-5: rgba(16, 30, 55, 0.095);
+  --track-subtle: rgba(30, 45, 70, 0.13);
+  --track-subtle-hi: rgba(30, 45, 70, 0.17);
+  --shadow-elevated: rgba(30, 45, 70, 0.16);
+  --shadow-soft: rgba(30, 45, 70, 0.1);
+  --canvas-scrim: rgba(244, 247, 251, 0.6);
+  --chip-scrim: rgba(255, 255, 255, 0.82);
+}
+
+:root[data-theme='light'] body {
+  background:
+    radial-gradient(ellipse 120% 80% at 15% -10%, rgba(11, 150, 179, 0.05), transparent 55%),
+    radial-gradient(ellipse 90% 70% at 100% 110%, rgba(108, 79, 214, 0.05), transparent 55%),
+    var(--void);
+}
+
+:root[data-theme='light'] .btn-primary {
+  color: #fff;
+}
+
+:root[data-theme='light'] .glass,
+:root[data-theme='light'] .glass-strong {
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 16px 32px -20px var(--shadow-elevated);
+}
+
+/* ---------- theme-aware type optimization ----------
+   Dark surfaces get a small amount of "glow irradiation" for free — light
+   text on a near-black glass panel reads slightly heavier than its actual
+   weight. Light surfaces don't get that lift, so thin instrument-style
+   type (Commit Mono) and the tall, fine-served Gambarino headlines can look
+   a touch washed out on white. Nudge both up a notch in light mode only,
+   rather than changing the base weights everywhere. */
+:root[data-theme='light'] {
+  --font-weight-mono-base: 500;
+}
+:root {
+  --font-weight-mono-base: 400;
+}
+:root[data-theme='light'] .mono,
+:root[data-theme='light'] .eyebrow,
+:root[data-theme='light'] .panel-title {
+  font-weight: var(--font-weight-mono-base);
+}
+:root[data-theme='light'] h1,
+:root[data-theme='light'] h2,
+:root[data-theme='light'] h3,
+:root[data-theme='light'] h4,
+:root[data-theme='light'] h5,
+:root[data-theme='light'] .big-figure,
+:root[data-theme='light'] .brand-name {
+  letter-spacing: 0.002em;
+  -webkit-text-stroke: 0.15px currentColor;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ---------- smooth theme transition ----------
+   Every element gets a default cross-fade on the properties that change
+   between light/dark (background, border, text, shadows, svg ink) so
+   switching themes reads as one continuous transition instead of a
+   flash/flicker. Elements with their own `transition` (buttons, nav
+   items, hover states, etc.) simply override this with their own —
+   class selectors already win over the universal selector below, so
+   interaction timing is untouched. */
+*, *::before, *::after {
+  transition:
+    background-color var(--theme-transition-duration) var(--ease-in-out),
+    border-color var(--theme-transition-duration) var(--ease-in-out),
+    color var(--theme-transition-duration) var(--ease-in-out),
+    box-shadow var(--theme-transition-duration) var(--ease-in-out),
+    fill var(--theme-transition-duration) var(--ease-in-out),
+    stroke var(--theme-transition-duration) var(--ease-in-out);
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  background: var(--void);
+  scroll-behavior: smooth;
+  transition: background-color var(--theme-transition-duration) var(--ease-in-out);
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--text-0);
+  background:
+    radial-gradient(ellipse 120% 80% at 15% -10%, rgba(51, 230, 255, 0.08), transparent 55%),
+    radial-gradient(ellipse 90% 70% at 100% 110%, rgba(155, 124, 255, 0.08), transparent 55%),
+    var(--void);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--theme-transition-duration) var(--ease-in-out), color var(--theme-transition-duration) var(--ease-in-out);
+}
+
+#root {
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-family: var(--font-display);
+  /* Plus Jakarta Sans ExtraBold for the strongest hierarchy (h1/h2), with
+     smaller headings easing down to Bold — real weights now, no synthetic
+     bolding needed. */
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1, h2 {
+  font-weight: 800;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--cyan-glow);
+  color: var(--text-0);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--panel-border-hi) transparent;
+}
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-thumb { background: var(--panel-border-hi); border-radius: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- shared primitives ---------- */
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.glass {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: 0 1px 0 0 var(--surface-3) inset, 0 20px 40px -24px var(--shadow-elevated);
+}
+
+.glass-strong {
+  background: var(--panel-strong);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.panel-title .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+  flex-shrink: 0;
+}
+.panel-title-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: var(--surface-1);
+  color: var(--text-0);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s var(--ease-out), background 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+  white-space: nowrap;
+}
+.btn:hover {
+  border-color: var(--panel-border-hi);
+  background: rgba(51, 230, 255, 0.06);
+  transform: translateY(-1px);
+}
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  color: #05070c;
+  border: none;
+  font-weight: 600;
+}
+.btn-primary:hover {
+  filter: brightness(1.08);
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-1);
+}
+.btn-ghost:hover {
+  background: var(--surface-3);
+  border-color: var(--panel-border);
+}
+
+.btn.active {
+  border-color: var(--panel-border-hi);
+  color: var(--cyan);
+  background: rgba(51, 230, 255, 0.08);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--panel-border);
+  color: var(--text-1);
+}
+.pill.live {
+  color: var(--green);
+  border-color: rgba(70, 224, 160, 0.35);
+  background: rgba(70, 224, 160, 0.07);
+}
+.pill.live .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  min-height: 300px; /* fallback height; replace with the exact height your original placeholder used if needed */
+  box-sizing: border-box;
+}
+/* optional: preserve size of the old inline svg area if you relied on that */
+.route-map-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 420px; /* match previous svg height if desired */
+  display: block;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.75); }
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes dashFlow {
+  to { stroke-dashoffset: -40; }
+}
+
+@keyframes scanSweep {
+  0% { transform: translateY(-10%); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+.text-cyan { color: var(--cyan); }
+.text-violet { color: var(--violet); }
+.text-green { color: var(--green); }
+.text-amber { color: var(--amber); }
+.text-red { color: var(--red); }
+.text-1 { color: var(--text-1); }
+.text-2 { color: var(--text-2); }
